@@ -1,25 +1,25 @@
 """
 Cliente de demonstração para o serviço de predição de sucesso de jogos da Steam.
 
-Testa o modelo com jogos reais populares da Steam.
+Testa o modelo com cenários hipotéticos baseados em padrões da indústria.
 """
 
 import requests
 import json
 
 
-def test_real_game(game_name: str, data_tuple: list, real_success: str):
+def test_scenario(scenario_name: str, data_tuple: list, expected_result: str):
     """
-    Testa predição para um jogo real.
+    Testa predição para um cenário hipotético.
     
     Args:
-        game_name: Nome do jogo
-        data_tuple: Dados do jogo
-        real_success: Sucesso real do jogo (para comparação)
+        scenario_name: Nome do cenário
+        data_tuple: Dados do cenário
+        expected_result: Resultado esperado do cenário
     """
     print(f"\n{'~'*80}")
-    print(f"JOGO: {game_name}")
-    print(f"Sucesso Real: {real_success}")
+    print(f"CENÁRIO: {scenario_name}")
+    print(f"Resultado Esperado: {expected_result}")
     print(f"{'~'*80}")
     
     # Converter para float (exceto release_date)
@@ -48,11 +48,11 @@ def test_real_game(game_name: str, data_tuple: list, real_success: str):
             print(f"  {result['message']}")
             
             # Comparar com expectativa
-            if "SUCESSO" in real_success and result['success']:
+            if "SUCESSO" in expected_result and result['success']:
                 print(f"\n  ✓ Predição CORRETA! Modelo identificou padrão de sucesso")
-            elif "FRACASSO" in real_success and not result['success']:
+            elif "FRACASSO" in expected_result and not result['success']:
                 print(f"\n  ✓ Predição CORRETA! Modelo identificou padrão de fracasso")
-            elif "INCERTO" in real_success:
+            elif "INCERTO" in expected_result:
                 print(f"\n  ℹ️  Cenário incerto - predição exploratória")
             else:
                 print(f"\n  ✗ Predição não corresponde à expectativa")
@@ -132,8 +132,8 @@ def main():
     # 7. Cenário: RPG de estúdio médio
     # Exemplo: RPG de estúdio respeitado
     mid_rpg = [49.99, 0, 890, "2025-08-15", 15, 2200000, 6, 52000]
-    test_real_game(
-        "Cenário Médio: RPG de Estúdio Estabelecido",
+    test_scenario(
+        "Cenário: RPG de Estúdio Médio",
         mid_rpg,
         "SUCESSO esperado (público fiel ao estúdio)"
     )
@@ -141,8 +141,8 @@ def main():
     # 8. Cenário: Jogo de mundo aberto ambicioso
     # Exemplo: novo open world com produção alta
     open_world = [69.99, 0, 1350, "2025-09-20", 24, 5500000, 8, 185000]
-    test_real_game(
-        "Cenário AAA: Mundo Aberto Ambicioso",
+    test_scenario(
+        "Cenário: AAA Mundo Aberto",
         open_world,
         "SUCESSO esperado (alto orçamento, boa execução)"
     )
@@ -150,8 +150,8 @@ def main():
     # 9. Cenário: Indie com baixo engagement
     # Exemplo: jogo pequeno com pouco tempo jogado
     indie_fail = [9.99, 0, 95, "2025-12-05", 4, 3500, 1, 65]
-    test_real_game(
-        "Cenário Indie: Baixo Engagement",
+    test_scenario(
+        "Cenário: Indie Baixo Engagement",
         indie_fail,
         "FRACASSO esperado (pouco tempo jogado, poucos owners)"
     )
@@ -159,8 +159,8 @@ def main():
     # 10. Cenário: Early Access muito recente
     # Exemplo: jogo lançado há poucos dias
     early_access = [24.99, 10, 180, "2026-01-15", 8, 8500, 1, 320]
-    test_real_game(
-        "Cenário Early Access: Lançamento Recente",
+    test_scenario(
+        "Cenário: Early Access Recente",
         early_access,
         "INCERTO (dados ainda muito limitados)"
     )
