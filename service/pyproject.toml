@@ -1,17 +1,26 @@
 [project]
-name = "service"
-version = "0.1.0"
-description = ""
+name = "steam-service"
+version = "1.0.0"
+description = "Serviço de predição de sucesso de jogos da Steam"
 authors = [
-    {name = "Rodrigo Sousa Barbosa",email = "108591857+rodrigosousa13@users.noreply.github.com"}
+    {name = "Rodrigo Sousa Barbosa", email = "108591857+rodrigosousa13@users.noreply.github.com"},
+    {name = "Clara Lima Silva", email = "claralimasilva@gmail.com"},
+    {name = "Ryan dos Santos Oliveira", email = "ryandsantosoliveira@gmail.com"},
+    {name = "Arthur Thomé Costa", email = "162047312+arthurt1@users.noreply.github.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
+    "flask>=3.1.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.5.0",
+    "imbalanced-learn>=0.12.0",
+    "requests>=2.32.0"
 ]
 
 [tool.poetry]
-packages = [{include = "service", from = "src"}]
+packages = [{include = "steam", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
