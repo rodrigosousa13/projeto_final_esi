@@ -30,7 +30,7 @@ logger = logging.getLogger("__main__")
 
 
 ## Limpeza e Engenharia de Atributos
-def preprocess_dataset(df: pd.DataFrame, max_error=0.10) -> pd.DataFrame:
+def preprocess_dataset(df: pd.DataFrame, max_error=0.05) -> pd.DataFrame:
     """
     Realiza a limpeza estatística e a engenharia de atributos do dataset.
 
